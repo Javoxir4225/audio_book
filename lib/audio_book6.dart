@@ -191,33 +191,50 @@ class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderState
   }
 
   _textBottom(String label, bool color) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => color? const MyAudioBook7():const MyAudioBook5(),
-          ),
-        );
-      },
-      style: ElevatedButton.styleFrom(
-        elevation: 6,
-        foregroundColor: Colors.blue,
-        backgroundColor:
-            color ? const Color.fromARGB(255, 72, 56, 209) : Colors.white,
-        fixedSize: const Size(330, 60),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: const BorderSide(
-            color: Color.fromARGB(255, 72, 56, 209),
+    return Container(
+      decoration:  color ?BoxDecoration(
+              color: const Color.fromARGB(255, 72, 56, 208),
+              borderRadius: BorderRadius.circular(10),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  const Color.fromARGB(255, 247, 122, 85).withOpacity(1),
+                  const Color.fromARGB(255, 247, 122, 85).withOpacity(1),
+                  const Color.fromARGB(255, 72, 56, 208),
+                  const Color.fromARGB(255, 72, 56, 208),
+                  const Color.fromARGB(255, 72, 56, 208),
+                ],
+              ),
+            ):null,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => color? const MyAudioBook7():const MyAudioBook5(),
+            ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          elevation: 6,
+          foregroundColor: Colors.blue,
+          backgroundColor:
+              color ?  Colors.transparent : Colors.white,
+          fixedSize: const Size(330, 60),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: const BorderSide(
+              color: Color.fromARGB(255, 72, 56, 209),
+            ),
           ),
         ),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-            color:
-                color ? Colors.white : const Color.fromARGB(255, 72, 56, 209),
-            fontSize: 16),
+        child: Text(
+          label,
+          style: TextStyle(
+              color:
+                  color ? Colors.white : const Color.fromARGB(255, 72, 56, 209),
+              fontSize: 16),
+        ),
       ),
     );
   }

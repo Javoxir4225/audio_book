@@ -166,20 +166,39 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                         ),
                       ),
                       const SizedBox(height: 12),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          elevation: 6,
-                          backgroundColor:
-                              const Color.fromARGB(255, 72, 56, 209),
-                          fixedSize: const Size(330, 60),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 72, 56, 208),
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              const Color.fromARGB(255, 247, 122, 85)
+                                  .withOpacity(1),
+                              const Color.fromARGB(255, 247, 122, 85)
+                                  .withOpacity(1),
+                              const Color.fromARGB(255, 72, 56, 208),
+                              const Color.fromARGB(255, 72, 56, 208),
+                              const Color.fromARGB(255, 72, 56, 208),
+                            ],
                           ),
                         ),
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            elevation: 6,
+                            backgroundColor:
+                                 Colors.transparent,
+                            fixedSize: const Size(330, 60),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text(
+                            "Login",
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 16),

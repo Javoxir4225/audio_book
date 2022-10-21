@@ -3,16 +3,20 @@ import 'package:audio_book/audio_book7.dart';
 import 'package:flutter/material.dart';
 
 class MyAudioBok6 extends StatefulWidget {
-  const MyAudioBok6({super.key});
+  // bool ff;
+  const MyAudioBok6({
+    super.key,
+  });
 
   @override
   State<MyAudioBok6> createState() => _MyAudioBok6State();
 }
 
-class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderStateMixin {
-
+class _MyAudioBok6State extends State<MyAudioBok6>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<Offset> _animation6;
+  bool animation = true;
 
   @override
   void initState() {
@@ -27,8 +31,10 @@ class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderState
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
     _animationController.forward();
+
     super.initState();
   }
+
   bool checkBox = true;
   @override
   Widget build(BuildContext context) {
@@ -112,7 +118,7 @@ class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderState
                               Text(
                                 "Terms",
                                 style: TextStyle(
-                                  color: Colors.red,
+                                  color: Color.fromARGB(255, 247, 122, 85),
                                   fontSize: 16,
                                 ),
                               ),
@@ -123,7 +129,7 @@ class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderState
                               Text(
                                 "Data Policy",
                                 style: TextStyle(
-                                  color: Colors.red,
+                                  color: Color.fromARGB(255, 247, 122, 85),
                                   fontSize: 16,
                                 ),
                               ),
@@ -137,7 +143,7 @@ class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderState
                               Text(
                                 "Cookies Policy",
                                 style: TextStyle(
-                                  color: Colors.red,
+                                  color: Color.fromARGB(255, 247, 122, 85),
                                   fontSize: 16,
                                 ),
                               ),
@@ -192,7 +198,8 @@ class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderState
 
   _textBottom(String label, bool color) {
     return Container(
-      decoration:  color ?BoxDecoration(
+      decoration: color
+          ? BoxDecoration(
               color: const Color.fromARGB(255, 72, 56, 208),
               borderRadius: BorderRadius.circular(10),
               gradient: LinearGradient(
@@ -206,20 +213,21 @@ class _MyAudioBok6State extends State<MyAudioBok6>with SingleTickerProviderState
                   const Color.fromARGB(255, 72, 56, 208),
                 ],
               ),
-            ):null,
+            )
+          : null,
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => color? const MyAudioBook7():const MyAudioBook5(),
+              builder: (context) =>
+                  color ? const MyAudioBook7() : const MyAudioBook5(),
             ),
           );
         },
         style: ElevatedButton.styleFrom(
           elevation: 6,
           foregroundColor: Colors.blue,
-          backgroundColor:
-              color ?  Colors.transparent : Colors.white,
+          backgroundColor: color ? Colors.transparent : Colors.white,
           fixedSize: const Size(330, 60),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

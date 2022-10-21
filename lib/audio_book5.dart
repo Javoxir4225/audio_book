@@ -13,7 +13,8 @@ class _MyAudioBook5State extends State<MyAudioBook5>
   late AnimationController _animationController;
   late Animation<double> _animation5;
   AnimationStatus _animationStatus = AnimationStatus.dismissed;
-
+  bool ontap = false;
+  int ontep = 0;
   @override
   void initState() {
     _animationController = AnimationController(
@@ -99,6 +100,9 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                       Form(
                         autovalidateMode: AutovalidateMode.always,
                         child: TextFormField(
+                          onTap: () {
+                            ontep++;
+                          },
                           validator: ((value) {
                             if (value?.contains("@") == false) {
                               return "Input correct text";
@@ -119,6 +123,9 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                       Form(
                         autovalidateMode: AutovalidateMode.always,
                         child: TextFormField(
+                          onTap: () {
+                            ontep++;
+                          },
                           validator: (value) {
                             int x = 0;
                             if (value != null) {
@@ -185,11 +192,14 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                           ),
                         ),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (ontep >= 2) {
+                              ontap = true;
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                             elevation: 6,
-                            backgroundColor:
-                                 Colors.transparent,
+                            backgroundColor: Colors.transparent,
                             fixedSize: const Size(330, 60),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -286,11 +296,13 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                           const SizedBox(width: 4),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => const MyAudioBok6(),
-                                ),
-                              );
+                              ontap
+                                  ? Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => MyAudioBok6(),
+                                      ),
+                                    )
+                                  : null;
                             },
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.red),

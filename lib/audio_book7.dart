@@ -180,7 +180,7 @@ class _MyAudioBook7State extends State<MyAudioBook7>with SingleTickerProviderSta
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) =>
-                  color ? const MyAudioBook8() : const MyAudioBok6(),
+                  color ? const MyAudioBook8() :  MyAudioBok6(),
             ),
           );
         },

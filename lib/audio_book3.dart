@@ -110,7 +110,7 @@ class _MyAudioBook3State extends State<MyAudioBook3>
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    right: 130, left: 144, bottom: 176, top: 610),
+                    right: 130, left: 144, bottom: 176, top: 630),
                 child: Row(
                   children: const [
                     Icon(

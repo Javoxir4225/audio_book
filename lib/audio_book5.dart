@@ -195,6 +195,11 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                           onPressed: () {
                             if (ontep >= 2) {
                               ontap = true;
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const MyAudioBok6(),
+                                ),
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(

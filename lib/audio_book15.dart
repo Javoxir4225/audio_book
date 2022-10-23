@@ -2,6 +2,7 @@
 // import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:audio_book/audio_book16.dart';
 import 'package:audio_book/audio_book17.dart';
+import 'package:audio_book/audio_book19.dart';
 import 'package:fancy_bottom_navigation_2/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -169,16 +170,17 @@ class _MyAudioBook15State extends State<MyAudioBook15> {
             ),
           ],
           onTabChangedListener: (position) {
-            setState(() {
-              selec = position;
-              if (selec == 1) {
+         setState(() {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (context) => const MyAudioBook17(),
+                    builder: (context) => position == 1
+                    ? const MyAudioBook17()
+                    : const MyAudioBook19(),
                   ),
                 );
-              }
-            });
+           
+         });
+           
           },
           initialSelection: selec,
           barBackgroundColor: Colors.black,

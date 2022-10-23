@@ -2,6 +2,9 @@ import 'package:audio_book/audio_book15.dart';
 import 'package:fancy_bottom_navigation_2/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
+import 'audio_book17.dart';
+import 'audio_book19.dart';
+
 class MyAudioBook16 extends StatefulWidget {
   const MyAudioBook16({super.key});
 
@@ -80,7 +83,18 @@ class _MyAudioBook16State extends State<MyAudioBook16> {
             TabData(iconData: Icons.search, title: "Search"),
             TabData(iconData: Icons.library_books, title: "Library"),
           ],
-          onTabChangedListener: (position) {},
+          onTabChangedListener: (position) {
+             setState(() {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => position == 1
+                    ? const MyAudioBook17()
+                    : const MyAudioBook19(),
+                  ),
+                );
+           
+         });
+          },
         ),
       ),
     );
@@ -112,6 +126,7 @@ class _MyAudioBook16State extends State<MyAudioBook16> {
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 4),

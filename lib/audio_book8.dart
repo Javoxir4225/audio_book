@@ -1,4 +1,3 @@
-
 import 'package:audio_book/audio_book7.dart';
 import 'package:audio_book/audio_book9.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +9,11 @@ class MyAudioBook8 extends StatefulWidget {
   State<MyAudioBook8> createState() => _MyAudioBook8State();
 }
 
-class _MyAudioBook8State extends State<MyAudioBook8> with SingleTickerProviderStateMixin{
-
-
-late AnimationController _animationController;
+class _MyAudioBook8State extends State<MyAudioBook8>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
   late Animation<Offset> _animation8;
-
+  int _ontep = 0;
   @override
   void initState() {
     _animationController = AnimationController(
@@ -30,7 +28,9 @@ late AnimationController _animationController;
     );
     _animationController.forward();
     super.initState();
-  }  bool checkBox = true;
+  }
+
+  bool checkBox = true;
   @override
   Widget build(BuildContext context) {
     return SlideTransition(
@@ -106,17 +106,11 @@ late AnimationController _animationController;
       autovalidateMode: AutovalidateMode.always,
       child: TextFormField(
         validator: (value) {
-          int x = 0;
-          if (value != null) {
-            for (var i = 0; i < value.length; i++) {
-              if ((int.tryParse(value[i]) == null)) {
-                return "eror";
-              } else {
-                break;
-              }
-            }
+          if (value != "+998 91 205 42 25") {
+            return "+998 91 205 42 25";
+          } else {
+            _ontep++;
           }
-          print("object $value");
         },
         decoration: InputDecoration(
           fillColor: Colors.grey.shade300,
@@ -135,7 +129,8 @@ late AnimationController _animationController;
     return Container(
       height: 60,
       // width: 300,
-     decoration: color? BoxDecoration(
+      decoration: color
+          ? BoxDecoration(
               color: const Color.fromARGB(255, 72, 56, 208),
               borderRadius: BorderRadius.circular(10),
               gradient: LinearGradient(
@@ -149,21 +144,31 @@ late AnimationController _animationController;
                   const Color.fromARGB(255, 72, 56, 208),
                 ],
               ),
-            ):null,
+            )
+          : null,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) =>
-                  color ? const MyAudioBook9() : const MyAudioBook7(),
-            ),
-          );
+          if (_ontep >= 1) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) =>
+                    color ? const MyAudioBook9() : const MyAudioBook7(),
+              ),
+            );
+          } else {
+            color
+                ? null
+                : Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const MyAudioBook7(),
+                    ),
+                  );
+          }
         },
         style: ElevatedButton.styleFrom(
           elevation: 6,
           foregroundColor: Colors.blue,
-          backgroundColor:
-              color ?  Colors.transparent : Colors.white,
+          backgroundColor: color ? Colors.transparent : Colors.white,
           fixedSize: const Size(330, 60),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

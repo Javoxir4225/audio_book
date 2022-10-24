@@ -104,6 +104,12 @@ class _MyAudioBook17State extends State<MyAudioBook17>
                   child: Form(
                     autovalidateMode: AutovalidateMode.always,
                     child: TextFormField(
+                      validator: (value) {
+                        if (value != "Harry Potter") {
+                          
+                        return "There is only Harry Potter";
+                        }
+                      },
                       onChanged: (value) {
                         _animationController.forward();
                         setState(() {

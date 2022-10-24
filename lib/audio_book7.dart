@@ -10,11 +10,11 @@ class MyAudioBook7 extends StatefulWidget {
   State<MyAudioBook7> createState() => _MyAudioBook7State();
 }
 
-class _MyAudioBook7State extends State<MyAudioBook7>with SingleTickerProviderStateMixin {
-
+class _MyAudioBook7State extends State<MyAudioBook7>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<Offset> _animation7;
-
+  int _ontep = 0;
   @override
   void initState() {
     _animationController = AnimationController(
@@ -30,6 +30,7 @@ class _MyAudioBook7State extends State<MyAudioBook7>with SingleTickerProviderSta
     _animationController.forward();
     super.initState();
   }
+
   bool checkBox = true;
   @override
   Widget build(BuildContext context) {
@@ -133,17 +134,11 @@ class _MyAudioBook7State extends State<MyAudioBook7>with SingleTickerProviderSta
       autovalidateMode: AutovalidateMode.always,
       child: TextFormField(
         validator: (value) {
-          int x = 0;
-          if (value != null) {
-            for (var i = 0; i < value.length; i++) {
-              if ((int.tryParse(value[i]) == null)) {
-                return "eror";
-              } else {
-                break;
-              }
-            }
+          if (value != "4225") {
+            return "Error: 4225";
+          } else {
+            _ontep++;
           }
-          print("object $value");
         },
         decoration: InputDecoration(
           fillColor: Colors.grey.shade300,
@@ -160,7 +155,8 @@ class _MyAudioBook7State extends State<MyAudioBook7>with SingleTickerProviderSta
 
   _textBottom(String label, bool color) {
     return Container(
-      decoration: color ?BoxDecoration(
+      decoration: color
+          ? BoxDecoration(
               color: const Color.fromARGB(255, 72, 56, 208),
               borderRadius: BorderRadius.circular(10),
               gradient: LinearGradient(
@@ -174,21 +170,31 @@ class _MyAudioBook7State extends State<MyAudioBook7>with SingleTickerProviderSta
                   const Color.fromARGB(255, 72, 56, 208),
                 ],
               ),
-            ):null,
+            )
+          : null,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) =>
-                  color ? const MyAudioBook8() :  MyAudioBok6(),
-            ),
-          );
+          if (_ontep >= 1) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) =>
+                    color ? const MyAudioBook8() : const MyAudioBok6(),
+              ),
+            );
+          } else {
+            color
+                ? null
+                : Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const MyAudioBok6(),
+                    ),
+                  );
+          }
         },
         style: ElevatedButton.styleFrom(
           elevation: 6,
           foregroundColor: Colors.blue,
-          backgroundColor:
-              color ?  Colors.transparent : Colors.white,
+          backgroundColor: color ? Colors.transparent : Colors.white,
           fixedSize: const Size(330, 60),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

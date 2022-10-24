@@ -15,6 +15,7 @@ class _MyAudioBook11State extends State<MyAudioBook11>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<Offset> _animation2;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -29,9 +30,11 @@ class _MyAudioBook11State extends State<MyAudioBook11>
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
     _animationController.forward();
+
     super.initState();
   }
 
+  bool _set0 = true;
   @override
   Widget build(BuildContext context) {
     return SlideTransition(
@@ -92,48 +95,74 @@ class _MyAudioBook11State extends State<MyAudioBook11>
                       const SizedBox(height: 30),
                       textField(),
                       const SizedBox(height: 6),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              textBotom("Art"),
-                              const SizedBox(width: 6),
-                              textBotom("Business"),
-                              const SizedBox(width: 6),
-                              textBotom("Biography"),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              textBotom("Comedy"),
-                              const SizedBox(width: 6),
-                              textBotom("Culture"),
-                              const SizedBox(width: 6),
-                              textBotom("Education"),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              textBotom("News"),
-                              const SizedBox(width: 6),
-                              textBotom("Philosophy"),
-                              const SizedBox(width: 6),
-                              textBotom("Psychology"),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              textBotom("Technology"),
-                              const SizedBox(width: 6),
-                              textBotom("Travel"),
-                            ],
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 40),
-                      _elevetBottom("Submit", true),
-                      const SizedBox(height: 16),
-                      _elevetBottom("Skip", false),
+                      _set0
+                          ? Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    textBotom("Art"),
+                                    const SizedBox(width: 6),
+                                    textBotom("Business"),
+                                    const SizedBox(width: 6),
+                                    textBotom("Biography"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    textBotom("Comedy"),
+                                    const SizedBox(width: 6),
+                                    textBotom("Culture"),
+                                    const SizedBox(width: 6),
+                                    textBotom("Education"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    textBotom("News"),
+                                    const SizedBox(width: 6),
+                                    textBotom("Philosophy"),
+                                    const SizedBox(width: 6),
+                                    textBotom("Psychology"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    textBotom("Technology"),
+                                    const SizedBox(width: 6),
+                                    textBotom("Travel"),
+                                  ],
+                                ),
+                                const SizedBox(height: 40),
+                                _elevetBottom("Submit", true),
+                                const SizedBox(height: 16),
+                                _elevetBottom("Skip", false),
+                              ],
+                            )
+                          : Center(
+                              child: SizedBox(
+                                width: 150,
+                                height: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Icon(
+                                      Icons.search_off,
+                                      color: Color.fromARGB(255, 72, 56, 208),
+                                      size: 60,
+                                    ),
+                                    Text(
+                                      "Search......",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 247, 122, 85),
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -152,7 +181,7 @@ class _MyAudioBook11State extends State<MyAudioBook11>
             ? null
             : Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) =>  const MyAudioBook12(),
+                  builder: (context) => const MyAudioBook12(),
                 ),
               );
       },
@@ -200,15 +229,27 @@ class _MyAudioBook11State extends State<MyAudioBook11>
   }
 
   textField() {
-    return TextFormField(
-      decoration: InputDecoration(
-        fillColor: Colors.grey.shade300,
-        filled: true,
-        hintText: "Search Categories",
-        hintStyle: const TextStyle(color: Colors.grey),
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide.none),
+    return Form(
+      autovalidateMode: AutovalidateMode.always,
+      child: TextFormField(
+        onChanged: (value) {
+          setState(() {
+            if (value == "") {
+              _set0 = true;
+            } else {
+              _set0 = false;
+            }
+          });
+        },
+        decoration: InputDecoration(
+          fillColor: Colors.grey.shade300,
+          filled: true,
+          hintText: "Search Categories",
+          hintStyle: const TextStyle(color: Colors.grey),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide.none),
+        ),
       ),
     );
   }

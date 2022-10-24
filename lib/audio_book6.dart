@@ -17,7 +17,7 @@ class _MyAudioBok6State extends State<MyAudioBok6>
   late AnimationController _animationController;
   late Animation<Offset> _animation6;
   bool animation = true;
-
+  int _ontep = 0;
   @override
   void initState() {
     _animationController = AnimationController(
@@ -84,8 +84,10 @@ class _MyAudioBok6State extends State<MyAudioBok6>
                         autovalidateMode: AutovalidateMode.always,
                         child: TextFormField(
                           validator: ((value) {
-                            if (value?.contains("@") == false) {
-                              return "Input correct text";
+                            if (value != "azamovjavohir4225@gmail.com") {
+                              return "Error: azamovjavohir4225@gmail.com";
+                            } else {
+                              _ontep++;
                             }
                           }),
                           decoration: InputDecoration(
@@ -100,9 +102,9 @@ class _MyAudioBok6State extends State<MyAudioBok6>
                         ),
                       ),
                       const SizedBox(height: 16),
-                      _textFormFild("Password"),
+                      _textFormFild("Password",true),
                       const SizedBox(height: 16),
-                      _textFormFild("Date of Birth"),
+                      _textFormFild("Date of Birth",false),
                       const SizedBox(height: 16),
                       Column(
                         children: [
@@ -166,22 +168,24 @@ class _MyAudioBok6State extends State<MyAudioBok6>
     );
   }
 
-  _textFormFild(String text) {
+  _textFormFild(String text, bool iF) {
     return Form(
       autovalidateMode: AutovalidateMode.always,
       child: TextFormField(
         validator: (value) {
-          int x = 0;
-          if (value != null) {
-            for (var i = 0; i < value.length; i++) {
-              if ((int.tryParse(value[i]) == null)) {
-                return "eror";
-              } else {
-                break;
-              }
+          if (iF) {
+            if (value != "javohir4225") {
+              return "Error: javohir4225";
+            } else {
+              _ontep++;
+            }
+          } else {
+            if (value != "1999.11.07") {
+              return "Error: 1999.11.07";
+            } else {
+              _ontep++;
             }
           }
-          print("object $value");
         },
         decoration: InputDecoration(
           fillColor: Colors.grey.shade300,
@@ -217,12 +221,15 @@ class _MyAudioBok6State extends State<MyAudioBok6>
           : null,
       child: ElevatedButton(
         onPressed: () {
+          if (_ontep >= 3) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) =>
                   color ? const MyAudioBook7() : const MyAudioBook5(),
             ),
           );
+            
+          }
         },
         style: ElevatedButton.styleFrom(
           elevation: 6,

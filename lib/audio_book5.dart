@@ -100,12 +100,12 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                       Form(
                         autovalidateMode: AutovalidateMode.always,
                         child: TextFormField(
-                          onTap: () {
-                            ontep++;
-                          },
+                          onChanged: (value) {},
                           validator: ((value) {
-                            if (value?.contains("@") == false) {
-                              return "Input correct text";
+                            if (value != "azamovjavohir4225@gmail.com") {
+                              return "Error: azamovjavohir4225@gmail.com";
+                            } else {
+                              ontep++;
                             }
                           }),
                           decoration: InputDecoration(
@@ -123,21 +123,12 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                       Form(
                         autovalidateMode: AutovalidateMode.always,
                         child: TextFormField(
-                          onTap: () {
-                            ontep++;
-                          },
                           validator: (value) {
-                            int x = 0;
-                            if (value != null) {
-                              for (var i = 0; i < value.length; i++) {
-                                if ((int.tryParse(value[i]) == null)) {
-                                  return "eror";
-                                } else {
-                                  break;
-                                }
-                              }
+                            if (value != "javohir4225") {
+                              return "Error: javohir4225";
+                            } else {
+                              ontep++;
                             }
-                            print("object $value");
                           },
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade300,
@@ -304,7 +295,8 @@ class _MyAudioBook5State extends State<MyAudioBook5>
                               ontap
                                   ? Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
-                                        builder: (context) => MyAudioBok6(),
+                                        builder: (context) =>
+                                            const MyAudioBok6(),
                                       ),
                                     )
                                   : null;

@@ -31,6 +31,7 @@ class _MyAudioBook12State extends State<MyAudioBook12>
     super.initState();
   }
 
+  bool _set0 = true;
   @override
   Widget build(BuildContext context) {
     return SlideTransition(
@@ -90,57 +91,84 @@ class _MyAudioBook12State extends State<MyAudioBook12>
                       ),
                       const SizedBox(height: 30),
                       textField(),
-                      const SizedBox(height: 6),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              textBotom("Art", true),
-                              const SizedBox(width: 6),
-                              textBotom("Business", false),
-                              const SizedBox(width: 6),
-                              textBotom("Biography", true),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              textBotom("Comedy", true),
-                              const SizedBox(width: 6),
-                              textBotom("Culture", true),
-                              const SizedBox(width: 6),
-                              textBotom("Education", false),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              textBotom("News", true),
-                              const SizedBox(width: 6),
-                              textBotom("Philosophy", true),
-                              const SizedBox(width: 6),
-                              textBotom("Psychology", true),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              textBotom("Technology", false),
-                              const SizedBox(width: 6),
-                              textBotom("Travel", true),
-                            ],
-                          ),
-                        ],
-                      ),
-                      const Text(
-                        "3 topic Selected",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 58, 47, 164),
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      _elevetBottom("Submit", true),
-                      const SizedBox(height: 16),
-                      _elevetBottom("Skip", false),
+                      _set0
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 6),
+                                Row(
+                                  children: [
+                                    textBotom("Art", true),
+                                    const SizedBox(width: 6),
+                                    textBotom("Business", false),
+                                    const SizedBox(width: 6),
+                                    textBotom("Biography", true),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    textBotom("Comedy", true),
+                                    const SizedBox(width: 6),
+                                    textBotom("Culture", true),
+                                    const SizedBox(width: 6),
+                                    textBotom("Education", false),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    textBotom("News", true),
+                                    const SizedBox(width: 6),
+                                    textBotom("Philosophy", true),
+                                    const SizedBox(width: 6),
+                                    textBotom("Psychology", true),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    textBotom("Technology", false),
+                                    const SizedBox(width: 6),
+                                    textBotom("Travel", true),
+                                  ],
+                                ),
+                                const Text(
+                                  "3 topic Selected",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 58, 47, 164),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const SizedBox(height: 30),
+                                _elevetBottom("Submit", true),
+                                const SizedBox(height: 16),
+                                _elevetBottom("Skip", false),
+                              ],
+                            )
+                          : Center(
+                              child: SizedBox(
+                                width: 150,
+                                height: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Icon(
+                                      Icons.search_off,
+                                      color: Color.fromARGB(255, 72, 56, 208),
+                                      size: 60,
+                                    ),
+                                    Text(
+                                      "Search......",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 247, 122, 85),
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -210,6 +238,15 @@ class _MyAudioBook12State extends State<MyAudioBook12>
 
   textField() {
     return TextFormField(
+      onChanged: (value) {
+        setState(() {
+          if (value == "") {
+            _set0 = true;
+          } else {
+            _set0 = false;
+          }
+        });
+      },
       decoration: InputDecoration(
         fillColor: Colors.grey.shade300,
         filled: true,

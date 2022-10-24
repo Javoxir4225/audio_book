@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:audio_book/audio_book1.dart';
+import 'package:audio_book/audio_book15.dart';
 import 'package:flutter/material.dart';
 
 class MyAudioBook14 extends StatefulWidget {
@@ -28,12 +29,12 @@ class _MyAudioBook14State extends State<MyAudioBook14>
     _animationController.repeat(reverse: true);
     super.initState();
 
-    Timer(const Duration(milliseconds: 6000), () {
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => const MyAudioBook1(),
-      //   ),
-      // );
+    Timer(const Duration(milliseconds: 7000), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const MyAudioBook15(),
+        ),
+      );
     });
   }
 

@@ -1,6 +1,7 @@
 import 'package:audio_book/audio_book15.dart';
 import 'package:audio_book/audio_book17.dart';
 import 'package:audio_book/audio_book19.dart';
+import 'package:audio_book/audio_book20.dart';
 import 'package:fancy_bottom_navigation_2/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -111,9 +112,9 @@ class _MyAudioBook18State extends State<MyAudioBook18> {
                 Row(
                   children: [
                     _textIconBottom(
-                        Icons.play_circle_outline, true, "Play Audio"),
+                        Icons.play_circle_outline, true, "Play Audio",true),
                     const SizedBox(width: 16),
-                    _textIconBottom(Icons.menu_book_sharp, false, "Read Book"),
+                    _textIconBottom(Icons.menu_book_sharp, false, "Read Book",false),
                   ],
                 ),
                 const SizedBox(height: 24),
@@ -362,7 +363,7 @@ class _MyAudioBook18State extends State<MyAudioBook18> {
     );
   }
 
-  _textIconBottom(IconData isIcon, bool color, String tex) {
+  _textIconBottom(IconData isIcon, bool color, String tex,bool navigator) {
     return Expanded(
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
@@ -376,7 +377,9 @@ class _MyAudioBook18State extends State<MyAudioBook18> {
           backgroundColor:
               color ? const Color.fromARGB(255, 72, 56, 208) : Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => navigator? const MyAudioBook20():const MyAudioBook18(),),);
+        },
         icon: Icon(
           color ? isIcon : isIcon,
           color: color ? Colors.white : const Color.fromARGB(255, 72, 56, 208),

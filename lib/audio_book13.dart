@@ -117,31 +117,46 @@ class _MyAudioBook13State extends State<MyAudioBook13>
     );
   }
 
-  _elevetBottom(
-    String text,
-  ) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const MyAudioBook14(),
-          ),
-        );
-      },
-      style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-            side: const BorderSide(
-              color: Color.fromARGB(255, 72, 56, 208),
+  _elevetBottom(String text) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 72, 56, 208),
+        borderRadius: BorderRadius.circular(10),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            const Color.fromARGB(255, 247, 122, 85).withOpacity(1),
+            const Color.fromARGB(255, 247, 122, 85).withOpacity(1),
+            const Color.fromARGB(255, 72, 56, 208),
+            const Color.fromARGB(255, 72, 56, 208),
+            const Color.fromARGB(255, 72, 56, 208),
+          ],
+        ),
+      ),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const MyAudioBook14(),
             ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+              side: const BorderSide(
+                color: Color.fromARGB(255, 72, 56, 208),
+              ),
+            ),
+            fixedSize: const Size(300, 60),
+            backgroundColor: Colors.transparent,
+            foregroundColor: const Color.fromARGB(255, 72, 56, 208)),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
           ),
-          fixedSize: const Size(300, 60),
-          backgroundColor: const Color.fromARGB(255, 72, 56, 208),
-          foregroundColor: const Color.fromARGB(255, 72, 56, 208)),
-      child: Text(
-        text,
-        style: const TextStyle(
-          color: Colors.white,
         ),
       ),
     );

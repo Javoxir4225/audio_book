@@ -2,9 +2,8 @@ import 'package:audio_book/audio_book4.dart';
 import 'package:flutter/material.dart';
 
 class MyAudioBook3 extends StatefulWidget {
-  final bool set;
-   MyAudioBook3( {super.key,required this.set});
-   
+  MyAudioBook3({super.key});
+
   @override
   State<MyAudioBook3> createState() => _MyAudioBook3State();
 }
@@ -14,10 +13,8 @@ class _MyAudioBook3State extends State<MyAudioBook3>
   late AnimationController _animationController;
   late Animation<Offset> _animation3;
 
-  
   @override
   void initState() {
-    
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
@@ -133,24 +130,41 @@ class _MyAudioBook3State extends State<MyAudioBook3>
               Padding(
                 padding: const EdgeInsets.only(
                     left: 40, right: 40, bottom: 80, top: 676),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const MyAudioBook4(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 72, 56, 208),
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        const Color.fromARGB(255, 247, 122, 85).withOpacity(1),
+                        const Color.fromARGB(255, 247, 122, 85).withOpacity(1),
+                        const Color.fromARGB(255, 72, 56, 208),
+                        const Color.fromARGB(255, 72, 56, 208),
+                        const Color.fromARGB(255, 72, 56, 208),
+                      ],
                     ),
-                    fixedSize: const Size(320, 50),
-                    backgroundColor: const Color.fromARGB(255, 72, 56, 208),
                   ),
-                  child: const Text(
-                    "Lets Get Started",
-                    style: TextStyle(color: Colors.white),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const MyAudioBook4(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      fixedSize: const Size(320, 50),
+                      backgroundColor: Colors.transparent,
+                    ),
+                    child: const Text(
+                      "Lets Get Started",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
